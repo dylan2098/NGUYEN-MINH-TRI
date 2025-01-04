@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres-container
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: resourceTest
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
+
+  nginx:
+    image: nginx
+    container_name: nginx
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/default.conf
+    ports:
+      - "8080:80"
+    depends_on:
+      - app
+
+  app:
+    build:
+      context: .
+    volumes:
+    - ./:/usr/src/app
+    - /usr/src/app/node_modules
+    container_name: project-resource
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - NODE_ENV=development
+      - HOST=localhost
+      - DELAY=0
+      - LIMIT_REQUEST=100
+      - MINUTE_REQUEST=1
+      - DEBUG=FALSE
+      - DEV_DB_CLIENT=postgresql
+      - DEV_DB_HOST=postgres-container
+      - DEV_DB_USER=postgres
+      - DEV_DB_PASS=postgres
+      - DEV_DB_NAME=resourceTest
+      - DEV_DB_PORT=5432
+      - DEV_DB_POOL_MAX=100
+
+volumes:
+  postgres_data:
