@@ -22,3 +22,7 @@ function sum_to_n_c(n: number): number {
     }
     return sum;
 }
+
+console.log(sum_to_n_a(100)); // => 5050
+console.log(sum_to_n_b(100)); // => 5050
+console.log(sum_to_n_c(100)); // => 5050

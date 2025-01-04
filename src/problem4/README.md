@@ -1,2 +1,5 @@
-### Problem 4: Run code: 
-    npx tsx src/problem4/index.ts
+### Cd: /src/problem4
+    cd src/problem4
+
+### Run code: 
+    npx tsx index.ts
