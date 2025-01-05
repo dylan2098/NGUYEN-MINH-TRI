@@ -18,8 +18,8 @@
 ### 6.Shut down Terminal 1. Restart container.
     docker-compose up -d
 
-
-### 7. Docker Image Size: ~186.5 MB
+### 7. Connect to website
+    http://localhost:3000/api-docs/
 
 ### 8. Shut down and remove container if you want turn off server
     docker-compose down -v
